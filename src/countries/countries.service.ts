@@ -10,6 +10,7 @@ export class CountriesService {
   }
 
   findAll() {
+      // This is to make sure some standard for country insertions
     return this.countriesRepository.find();
   }
 }
