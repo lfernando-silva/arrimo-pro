@@ -1,22 +1,21 @@
-import { DataSource } from 'typeorm';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { join } = require('path');
+const env = require('./ormenv');
 
-import { join } from 'path';
-import env from './ormenv';
-
-const subscriptionEntitiesPath = join(
+const subscriptionsEntitiesPath = join(
   __dirname,
   'dist',
   'src',
-  'subscription',
+  'subscriptions',
   'entities',
   '/*.{js,ts}',
 );
 
 const migrationsPath = join(__dirname, 'dist', 'src', 'migrations', '*.js');
 
-// const migrationsDir = join(__dirname, 'src', 'migrations');
+const migrationsDir = join(__dirname, 'src', 'migrations');
 
-const devDataSource = new DataSource({
+module.exports = {
   name: 'default',
   type: 'postgres',
   host: env.DATABASE_HOST,
@@ -24,9 +23,10 @@ const devDataSource = new DataSource({
   username: env.DATABASE_USERNAME,
   password: env.DATABASE_PASSWORD,
   database: env.DATABASE_DBNAME,
-  entities: [subscriptionEntitiesPath],
   synchronize: false,
+  entities: [subscriptionsEntitiesPath],
   migrations: [migrationsPath],
-});
-
-export default devDataSource;
+  cli: {
+    migrationsDir,
+  },
+};
