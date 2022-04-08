@@ -11,7 +11,16 @@ const subscriptionsEntitiesPath = join(
   '/*.{js,ts}',
 );
 
-const migrationsPath = join(__dirname, 'dist', 'src', 'migrations', '*.js');
+const countriesEntitiesPath = join(
+  __dirname,
+  'dist',
+  'src',
+  'countries',
+  'entities',
+  '/*.{js,ts}',
+);
+
+const migrationsPath = join(__dirname, 'dist', 'migrations', '*.js');
 
 const migrationsDir = join(__dirname, 'src', 'migrations');
 
@@ -24,7 +33,7 @@ module.exports = {
   password: env.DATABASE_PASSWORD,
   database: env.DATABASE_DBNAME,
   synchronize: false,
-  entities: [subscriptionsEntitiesPath],
+  entities: [countriesEntitiesPath, subscriptionsEntitiesPath],
   migrations: [migrationsPath],
   cli: {
     migrationsDir,

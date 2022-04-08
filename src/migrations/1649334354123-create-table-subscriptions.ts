@@ -39,7 +39,11 @@ export class createTableSubscriptions1649334354123
             isNullable: false,
             default: `'weekly'`, // as business rules say the newsletter is weekly
           },
-          // @todo: country
+          {
+            name: 'email',
+            type: 'varchar(350)',
+            isNullable: false,
+          },
         ],
       }),
     );
