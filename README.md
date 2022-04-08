@@ -13,7 +13,7 @@ $ yarn
 ## Running database (docker)
 
 ```bash
-# See .env files to manage database credentials
+# See .env.example files to manage database credentials
 $ docker-compose ]--env-file path/to/envfile] up -d newsletter
 ```
 
