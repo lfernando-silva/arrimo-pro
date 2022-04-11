@@ -35,8 +35,11 @@ $ yarn start:prod
 $ yarn test
 # e2e tests
 $ yarn test:e2e
-# test coverage
-$ yarn test:cov
+```
+
+## Docs
+```
+Docs are provided using [Swagger](https://swagger.io/) in `/docs`.
 ```
 
 ## Migrations
