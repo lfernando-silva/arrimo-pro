@@ -1,7 +1,7 @@
 import { TestingModule } from '@nestjs/testing';
 
 import { CountriesController } from '../../countries.controller';
-import createTestingModule from '../helpers/create-testing-module';
+import createTestingModule from '../../../helpers/tests/create-testing-module';
 
 describe('CountriesController', () => {
   let moduleRef: TestingModule;

@@ -7,8 +7,8 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import { Country } from 'src/countries/entities';
-import Frequency from 'src/@types/frequency';
+import { Country } from '../../countries/entities';
+import Frequency from '../../@types/frequency';
 
 @Entity('subscriptions')
 export default class Subcription {
@@ -17,7 +17,7 @@ export default class Subcription {
   id: string;
 
   @Column({
-    name: 'subscription_name',
+    name: 'subscription_time',
     type: 'timestamptz',
     default: new Date(),
   })
@@ -43,8 +43,8 @@ export default class Subcription {
   @ApiProperty()
   frequency: Frequency;
 
-  @ApiProperty()
   @ManyToOne(() => Country, (country) => country.subscribers)
   @JoinColumn({ name: 'country_id' })
-  country: Country;
+  @ApiProperty({ type: () => Country })
+  public country: Country;
 }

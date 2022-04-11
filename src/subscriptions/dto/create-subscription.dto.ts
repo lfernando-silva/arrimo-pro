@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Length, IsUUID, IsIn } from 'class-validator';
-import Frequency from 'src/@types/frequency';
+import Frequency from '../../@types/frequency';
 
 export class CreateSubscriptionDto {
   @ApiProperty()

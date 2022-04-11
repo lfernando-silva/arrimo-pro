@@ -2,24 +2,6 @@
 const { join } = require('path');
 const env = require('./ormenv');
 
-const subscriptionsEntitiesPath = join(
-  __dirname,
-  'dist',
-  'src',
-  'subscriptions',
-  'entities',
-  '/*.{js,ts}',
-);
-
-const countriesEntitiesPath = join(
-  __dirname,
-  'dist',
-  'src',
-  'countries',
-  'entities',
-  '/*.{js,ts}',
-);
-
 const migrationsPath = join(__dirname, 'dist', 'migrations', '*.js');
 
 const migrationsDir = join(__dirname, 'src', 'migrations');
@@ -33,7 +15,7 @@ module.exports = {
   password: env.DATABASE_PASSWORD,
   database: env.DATABASE_DBNAME,
   synchronize: false,
-  entities: [countriesEntitiesPath, subscriptionsEntitiesPath],
+  entities: [__dirname + 'entities/**/*.entity.ts'],
   migrations: [migrationsPath],
   cli: {
     migrationsDir,

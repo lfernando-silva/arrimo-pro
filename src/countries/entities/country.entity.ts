@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
-import { Subscription } from 'src/subscriptions/entities';
+import { Subscription } from '../../subscriptions/entities';
 
 @Entity('countries')
 export default class Country {

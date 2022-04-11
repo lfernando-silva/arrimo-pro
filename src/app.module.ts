@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import config from './config';
 import { CountriesModule } from './countries/countries.module';
+import { SubscriptionModule } from './subscriptions/subscriptions.module';
 
 const envFilePath = `.env.${process.env.NODE_ENV || 'development'}`;
 
@@ -31,6 +32,7 @@ const envFilePath = `.env.${process.env.NODE_ENV || 'development'}`;
       inject: [ConfigService],
     }),
     CountriesModule,
+    SubscriptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
