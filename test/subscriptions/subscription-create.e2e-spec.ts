@@ -62,10 +62,10 @@ describe('GamesController - Create(e2e)', () => {
   });
 
   it('/subscriptions (POST) - 400', async () => {
-    const title = faker.random.words(200);
+    const email = faker.random.words(200);
     const { body } = await request(app.getHttpServer())
       .post(`/subscriptions`)
-      .send({ ...mockCreateSubscriptionDto, title })
+      .send({ ...mockCreateSubscriptionDto, email })
       .expect(400);
 
     expect(body).toEqual({
