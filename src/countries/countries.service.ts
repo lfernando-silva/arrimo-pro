@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Connection } from 'typeorm';
 import { Country } from './entities';
+import { CountryRepository } from './repositories';
 
 @Injectable()
 export class CountriesService {
-  private countriesRepository: any;
+  private countriesRepository: CountryRepository;
   constructor(private readonly connection: Connection) {
     this.countriesRepository = this.connection.getRepository(Country);
   }

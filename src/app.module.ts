@@ -27,6 +27,7 @@ const envFilePath = `.env.${process.env.NODE_ENV || 'development'}`;
           password: configService.get<string>('DATABASE_PASSWORD'),
           database: configService.get<string>('DATABASE_DBNAME'),
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
+          jwtSecret: configService.get<string>('JWT_SECRET'),
         };
       },
       inject: [ConfigService],

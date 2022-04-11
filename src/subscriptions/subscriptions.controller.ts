@@ -1,9 +1,10 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
 import {
   ApiCreatedResponse,
   ApiTags,
   ApiBadRequestResponse,
 } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
 import { CreateSubscriptionDto } from './dto/create-subscription.dto';
 import { Subscription } from './entities';
@@ -21,5 +22,11 @@ export class SubscriptionsController {
   @ApiBadRequestResponse()
   async create(@Body() data: CreateSubscriptionDto) {
     return this.subscriptionsService.create(data);
+  }
+
+  @Get()
+  @UseGuards(AuthGuard('jwt'))
+  async list() {
+    return [];
   }
 }
