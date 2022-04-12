@@ -6,7 +6,7 @@ Should not be used in production.
 import { getConnection } from 'typeorm';
 
 const truncatableParentTables = [];
-const truncatableTables = ['subscriptions'];
+const truncatableTables = ['subscriptions', 'users'];
 
 export default async function truncate(): Promise<void> {
   if (process.env.NODE_ENV !== 'test') {

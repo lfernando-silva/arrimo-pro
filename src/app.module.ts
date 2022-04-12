@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import config from './config';
 import { CountriesModule } from './countries/countries.module';
 import { SubscriptionModule } from './subscriptions/subscriptions.module';
+import { AuthModule } from './auth/auth.module';
 
 const envFilePath = `.env.${process.env.NODE_ENV || 'development'}`;
 
@@ -27,11 +28,11 @@ const envFilePath = `.env.${process.env.NODE_ENV || 'development'}`;
           password: configService.get<string>('DATABASE_PASSWORD'),
           database: configService.get<string>('DATABASE_DBNAME'),
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
-          jwtSecret: configService.get<string>('JWT_SECRET'),
         };
       },
       inject: [ConfigService],
     }),
+    AuthModule,
     CountriesModule,
     SubscriptionModule,
   ],

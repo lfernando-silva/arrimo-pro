@@ -5,7 +5,6 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
-import { User } from './entities';
 import { UserRepository } from './repositories';
 import { JwtService } from '@nestjs/jwt';
 import { Connection } from 'typeorm';
@@ -13,18 +12,20 @@ import { Connection } from 'typeorm';
 @Injectable()
 export class AuthService {
   private userRepository: UserRepository;
-  private jwtService: JwtService;
-  constructor(private readonly connection: Connection) {
+  constructor(
+    private readonly connection: Connection,
+    private jwtService: JwtService,
+  ) {
     this.userRepository = this.connection.getCustomRepository(UserRepository);
   }
 
-  async signUp(createUserDto: CreateUserDto): Promise<User> {
+  async signUp(createUserDto: CreateUserDto) {
     if (createUserDto.password != createUserDto.confirm) {
       throw new UnprocessableEntityException(
         'Password and confirmation are differents',
       );
     }
-    return this.userRepository.create(createUserDto);
+    return this.userRepository.createUser(createUserDto);
   }
 
   async signIn(loginDto: LoginUserDto) {

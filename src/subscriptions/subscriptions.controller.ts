@@ -1,4 +1,11 @@
-import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  UseGuards,
+  Injectable,
+} from '@nestjs/common';
 import {
   ApiCreatedResponse,
   ApiTags,
@@ -12,6 +19,7 @@ import { SubscriptionsService } from './subscriptions.service';
 
 @ApiTags('subscriptions')
 @Controller('subscriptions')
+@Injectable()
 export class SubscriptionsController {
   constructor(private readonly subscriptionsService: SubscriptionsService) {}
 

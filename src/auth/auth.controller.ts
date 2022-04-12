@@ -1,26 +1,31 @@
-import { Controller, Post, Body, ValidationPipe } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
+import { User } from './entities';
 
+@ApiTags('subscriptions')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('/signup')
-  async signUp(
-    @Body(ValidationPipe) createUserDto: CreateUserDto,
-  ): Promise<{ message: string }> {
-    await this.authService.signUp(createUserDto);
-    return {
-      message: 'User created successfully',
-    };
+  @ApiCreatedResponse({
+    type: User,
+  })
+  @ApiBadRequestResponse()
+  async signUp(@Body() createUserDto: CreateUserDto) {
+    return this.authService.signUp(createUserDto);
   }
 
   @Post('/signin')
-  async signIn(
-    @Body(ValidationPipe) loginDto: LoginUserDto,
-  ): Promise<{ token: string }> {
+  @ApiBadRequestResponse()
+  async signIn(@Body() loginDto: LoginUserDto) {
     return await this.authService.signIn(loginDto);
   }
 }

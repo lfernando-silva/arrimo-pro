@@ -15,7 +15,7 @@ module.exports = {
   password: env.DATABASE_PASSWORD,
   database: env.DATABASE_DBNAME,
   synchronize: false,
-  entities: [__dirname + 'entities/**/*.entity.ts'],
+  entities: [__dirname + '/**/*.entity{.ts,.js}'],
   migrations: [migrationsPath],
   cli: {
     migrationsDir,
